@@ -1,13 +1,62 @@
-public class OOPSBannerApp.java {
+/**
+ * OOPSBannerApp
+ *
+ * UC5: Render OOPS as Banner using Inline Array Initialization
+ *
+ * @author Harnath
+ * @version 5.0
+ */
+public class OOPSBannerApp {
+
     public static void main(String[] args) {
 
-        System.out.println(" *****   *****   *****   ***** ");
-        System.out.println("*     * *     * *     * *     ");
-        System.out.println("*     * *     * *     * *      ");
-        System.out.println("*     * *     * *****   *****  ");
-        System.out.println("*     * *     * *            * ");
-        System.out.println("*     * *     * *            * ");
-        System.out.println(" *****   *****  *       *****  ");
+        String[] banner = {
 
+            String.join(" ",
+                    " *****  ",
+                    " *****  ",
+                    "******* ",
+                    "******* "),
+
+            String.join(" ",
+                    "*     * ",
+                    "*     * ",
+                    "*     * ",
+                    "*       "),
+
+            String.join(" ",
+                    "*     * ",
+                    "*     * ",
+                    "*     * ",
+                    "*       "),
+
+            String.join(" ",
+                    "*     * ",
+                    "*     * ",
+                    "******* ",
+                    "******* "),
+
+            String.join(" ",
+                    "*     * ",
+                    "*     * ",
+                    "*       ",
+                    "      * "),
+
+            String.join(" ",
+                    "*     * ",
+                    "*     * ",
+                    "*       ",
+                    "      * "),
+
+            String.join(" ",
+                    " *****  ",
+                    " *****  ",
+                    "*       ",
+                    "******* ")
+        };
+
+        for (String line : banner) {
+            System.out.println(line);
+        }
     }
 }
