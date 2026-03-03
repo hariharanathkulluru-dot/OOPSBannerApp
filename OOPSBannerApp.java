@@ -1,62 +1,68 @@
 /**
  * OOPSBannerApp
  *
- * UC5: Render OOPS as Banner using Inline Array Initialization
+ * UC6: Render OOPS using Helper Methods
  *
  * @author Harnath
- * @version 5.0
+ * @version 6.0
  */
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
 
-        String[] banner = {
+        String[] o = getOPattern();
+        String[] p = getPPattern();
+        String[] s = getSPattern();
 
-            String.join(" ",
-                    " *****  ",
-                    " *****  ",
-                    "******* ",
-                    "******* "),
+        String[] banner = new String[7];
 
-            String.join(" ",
-                    "*     * ",
-                    "*     * ",
-                    "*     * ",
-                    "*       "),
+        // Combine patterns line by line
+        for (int i = 0; i < 7; i++) {
+            banner[i] = String.join(" ", o[i], o[i], p[i], s[i]);
+        }
 
-            String.join(" ",
-                    "*     * ",
-                    "*     * ",
-                    "*     * ",
-                    "*       "),
-
-            String.join(" ",
-                    "*     * ",
-                    "*     * ",
-                    "******* ",
-                    "******* "),
-
-            String.join(" ",
-                    "*     * ",
-                    "*     * ",
-                    "*       ",
-                    "      * "),
-
-            String.join(" ",
-                    "*     * ",
-                    "*     * ",
-                    "*       ",
-                    "      * "),
-
-            String.join(" ",
-                    " *****  ",
-                    " *****  ",
-                    "*       ",
-                    "******* ")
-        };
-
+        // Print using enhanced for loop
         for (String line : banner) {
             System.out.println(line);
         }
+    }
+
+    // O Pattern
+    public static String[] getOPattern() {
+        return new String[] {
+                " *****  ",
+                "*     * ",
+                "*     * ",
+                "*     * ",
+                "*     * ",
+                "*     * ",
+                " *****  "
+        };
+    }
+
+    // P Pattern
+    public static String[] getPPattern() {
+        return new String[] {
+                "******* ",
+                "*     * ",
+                "*     * ",
+                "******* ",
+                "*       ",
+                "*       ",
+                "*       "
+        };
+    }
+
+    // S Pattern
+    public static String[] getSPattern() {
+        return new String[] {
+                "******* ",
+                "*       ",
+                "*       ",
+                "******* ",
+                "      * ",
+                "      * ",
+                "******* "
+        };
     }
 }
