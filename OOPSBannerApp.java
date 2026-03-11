@@ -1,20 +1,98 @@
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * OOPSBannerApp - UC8
- * Using HashMap to store character patterns and render banner text.
+ * OOPSBannerApp - UC7
+ * Demonstrates storing character patterns using an Inner Static Class
+ * and printing the banner for the word OOPS.
  */
 public class OOPSBannerApp {
 
     /**
-     * Utility method to build character pattern map
-     * 
-     * @return Map containing character and its banner pattern
+     * Inner Static Class to store a character and its banner pattern
      */
-    public static Map<Character, String[]> buildCharacterPatterns() {
+    static class CharacterPatternMap {
 
-        Map<Character, String[]> patternMap = new HashMap<>();
+        private char character;
+        private String[] pattern;
+
+        /**
+         * Constructor to initialize character and pattern
+         * 
+         * @param character Character to display
+         * @param pattern   Banner pattern for the character
+         */
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
+
+        /**
+         * Getter for character
+         * 
+         * @return character
+         */
+        public char getCharacter() {
+            return character;
+        }
+
+        /**
+         * Getter for pattern
+         * 
+         * @return pattern array
+         */
+        public String[] getPattern() {
+            return pattern;
+        }
+    }
+
+    /**
+     * Utility method to get pattern for a specific character
+     * 
+     * @param characterPatterns array of CharacterPatternMap objects
+     * @param ch                character to search
+     * @return pattern of the character
+     */
+    public static String[] getCharacterPattern(CharacterPatternMap[] characterPatterns, char ch) {
+
+        for (CharacterPatternMap cp : characterPatterns) {
+            if (cp.getCharacter() == ch) {
+                return cp.getPattern();
+            }
+        }
+
+        return new String[7];
+    }
+
+    /**
+     * Utility method to display banner text
+     * 
+     * @param text              word to display
+     * @param characterPatterns array of CharacterPatternMap objects
+     */
+    public static void displayBanner(String text, CharacterPatternMap[] characterPatterns) {
+
+        StringBuilder[] bannerLines = new StringBuilder[7];
+
+        for (int i = 0; i < 7; i++) {
+            bannerLines[i] = new StringBuilder();
+        }
+
+        for (char ch : text.toCharArray()) {
+
+            String[] pattern = getCharacterPattern(characterPatterns, ch);
+
+            for (int i = 0; i < 7; i++) {
+                bannerLines[i].append(pattern[i]).append("  ");
+            }
+        }
+
+        for (StringBuilder line : bannerLines) {
+            System.out.println(line.toString());
+        }
+    }
+
+    /**
+     * Main Method
+     */
+    public static void main(String[] args) {
 
         String[] O = {
                 " ***** ",
@@ -38,55 +116,20 @@ public class OOPSBannerApp {
 
         String[] S = {
                 " ***** ",
-                "*      ",
-                "*      ",
+                "*     ",
+                "*     ",
                 " ***** ",
-                "      *",
-                "      *",
-                " ***** "
+                "     *",
+                "     *",
+                "***** "
         };
 
-        patternMap.put('O', O);
-        patternMap.put('P', P);
-        patternMap.put('S', S);
+        CharacterPatternMap[] characterPatterns = {
+                new CharacterPatternMap('O', O),
+                new CharacterPatternMap('P', P),
+                new CharacterPatternMap('S', S)
+        };
 
-        return patternMap;
-    }
-
-    /**
-     * Utility method to display banner text
-     * 
-     * @param message   word to display
-     * @param patternMap map containing character patterns
-     */
-    public static void displayBanner(String message, Map<Character, String[]> patternMap) {
-
-        for (int row = 0; row < 7; row++) {
-
-            StringBuilder line = new StringBuilder();
-
-            for (char ch : message.toCharArray()) {
-
-                String[] pattern = patternMap.get(ch);
-
-                if (pattern != null) {
-                    line.append(pattern[row]).append("  ");
-                }
-            }
-
-            System.out.println(line.toString());
-        }
-    }
-
-    /**
-     * Main Method
-     */
-    public static void main(String[] args) {
-
-        Map<Character, String[]> characterPatterns = buildCharacterPatterns();
-
-        String message = "OOPS";
-
-        displayBanner(message, characterPatterns);
+        displayBanner("OOPS", characterPatterns);
     }
 }
